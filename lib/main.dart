@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:raveup_qr_reader/checked.dart';
 import 'package:raveup_qr_reader/constants.dart';
 
 void main() {
@@ -52,12 +53,15 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: (){
                 debugPrint("qr modu");
                 scanQrCode();
+                debugPrint(data);
               },
               child: const Text("QR Okut"),
             ),
             TextButton(
               onPressed: (){
+                debugPrint(data);
                 debugPrint("giriş yap");
+                Navigator.push(context, MaterialPageRoute(builder: (context) => PassCheckPage(data)));
               }, 
               child: const Text("Giriş Yap")
             ),
@@ -68,9 +72,10 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void scanQrCode() {
-    FlutterBarcodeScanner.scanBarcode("#3A3563", "Cancel", true, ScanMode.QR).then((value) {
+    FlutterBarcodeScanner.scanBarcode("#3A3563", "Cancel", true, ScanMode.BARCODE).then((value) {
       setState(() {
-        data = value;
+        debugPrint(value);
+        this.data = value;
       });
     });
   }
