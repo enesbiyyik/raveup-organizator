@@ -1,4 +1,4 @@
-package com.example.raveup_qr_reader
+package co.raveup.raveup_qr_reader
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'RaveUp Organizator',
+      title: 'RaveUp Organizer',
       theme: ThemeData(
         textButtonTheme: const TextButtonThemeData(
           style: ButtonStyle(
@@ -44,19 +44,22 @@ class _MyHomePageState extends State<MyHomePage> {
   late Map<String, dynamic> ticket;
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    ticket = jsonDecode(data);
     return Scaffold(
       backgroundColor: appPrimaryDark,
       appBar: AppBar(
-        title: const Text("RaveUp Organizator"),
+        title: const Text("RaveUp Organizer"),
         backgroundColor: appPrimaryLight,
       ),
       floatingActionButton: FloatingActionButton.extended(
         backgroundColor: appDetailPurple,
-        onPressed: (){
-          scanQrCode();
-          ticket = jsonDecode(data);
+        onPressed: () async {
+          await scanQrCode();
         },
         label: Row(
           children: const [
@@ -137,10 +140,11 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  void scanQrCode() {
+  scanQrCode() async {
     FlutterBarcodeScanner.scanBarcode("#3A3563", "Geri Çık", false, ScanMode.BARCODE).then((value) {
       setState(() {
         data = value;
+        ticket = jsonDecode(value);
       });
     });
   }

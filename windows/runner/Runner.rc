@@ -89,11 +89,11 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "com.example" "\0"
+            VALUE "CompanyName", "co.raveup" "\0"
             VALUE "FileDescription", "raveup_qr_reader" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
             VALUE "InternalName", "raveup_qr_reader" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2023 com.example. All rights reserved." "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2023 co.raveup. All rights reserved." "\0"
             VALUE "OriginalFilename", "raveup_qr_reader.exe" "\0"
             VALUE "ProductName", "raveup_qr_reader" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
