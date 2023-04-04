@@ -72,68 +72,78 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       body: Center(
-        child: data == "" ? Container() : Center(
-          child: Container(
-            width: 300,
-            height: 300,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.only(top: 32, bottom: 32, left: 32, right: 32),
-              child: Column(
-                children: [
-                  Expanded(
-                    flex: 3,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Text("İsim:", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
-                            AutoSizeText(ticket["participantName"], style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold), maxLines: 1,),
-                          ],
-                        ),
-                        const Divider(),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Text("Etkinlik:", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
-                            Expanded(
-                              child: AutoSizeText(ticket["eventName"], style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold), maxLines: 2, textAlign: TextAlign.end,),
-                            ),
-                          ],
-                        ),
-                        const Divider(),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Text("Tarih:", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
-                            Text(ticket["eventDate"], style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
-                          ],
-                        ),
-                        const Divider(),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Text("Onay:", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
-                            Text(ticket["isApproved"] ? "Evet" : "Hayır", style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
-                          ],
-                        ),
-                      ],
-                    ),
+        child: data == "" ? Container() : Container(
+          width: 300,
+          height: 550,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Expanded(
+                flex: 4,
+                child: Container(
+                  height: 280,
+                  width: 300,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.only(topLeft: Radius.circular(8), topRight: Radius.circular(8)),
+                    child: Image.network(ticket["imageUrl"], fit: BoxFit.cover,)
                   ),
-                  Expanded(
-                    flex: 2,
-                    child: Center(
-                      child: ticket["isApproved"] ? const Icon(Icons.task_alt, color: Colors.green, size: 48) : const Icon(Icons.disabled_by_default, color: Colors.red, size: 48,),
-                    ),
-                  ),
-                ],
+                ),
               ),
-            ),
+              Expanded(
+                flex: 4,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 32),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text("İsim:", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                          AutoSizeText(ticket["participantName"], style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold), maxLines: 1,),
+                        ],
+                      ),
+                      const Divider(),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text("Etkinlik:", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                          Expanded(
+                            child: AutoSizeText(ticket["eventName"], style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold), maxLines: 2, textAlign: TextAlign.end,),
+                          ),
+                        ],
+                      ),
+                      const Divider(),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text("Tarih:", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                          Text(ticket["eventDate"], style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                        ],
+                      ),
+                      const Divider(),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text("Onay:", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                          Text(ticket["isApproved"] ? "Evet" : "Hayır", style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Expanded(
+                flex: 2,
+                child: Center(
+                  child: ticket["isApproved"] ? const Icon(Icons.task_alt, color: Colors.green, size: 48) : const Icon(Icons.disabled_by_default, color: Colors.red, size: 48,),
+                ),
+              ),
+            ],
           ),
         ),
       ),
